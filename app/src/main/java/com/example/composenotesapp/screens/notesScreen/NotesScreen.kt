@@ -53,7 +53,7 @@ fun NotesScreen(notesList:List<Note>,navController: NavController,onDelete:(Note
         icon = {
             Icon(imageVector = Icons.Default.Edit, contentDescription ="Archive")
         },
-        background = Color.Green
+        background = Color.Blue
     )
 
     val delete=SwipeAction(
