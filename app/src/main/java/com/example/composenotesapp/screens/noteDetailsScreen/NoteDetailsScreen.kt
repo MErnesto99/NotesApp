@@ -1,6 +1,9 @@
 package com.example.composenotesapp.screens.noteDetailsScreen
 
+import android.os.Build
 import android.view.Window
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.composenotesapp.components.AppTopBar
 import com.example.composenotesapp.components.NoteInputText
@@ -23,53 +27,63 @@ import com.example.composenotesapp.model.Note
 import com.example.composenotesapp.utils.UUIDConverter
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NoteDetailsScreen(
     navController: NavController,
     noteId:String?,
+    onEditNote:(Note)->Unit,
    nList:List<Note>){
 
-    var line=1
-    var title by remember {
-        mutableStateOf("")
-    }
-    var description by remember {
-        mutableStateOf("")
-    }
-    var maxLines by remember {
-        mutableStateOf(true)
+    var list=nList.filter {note->
+        UUIDConverter().fromUIID(note.uuid)==noteId
     }
 
-    var list=nList.filter {
-        UUIDConverter().fromUIID(it.uuid)==noteId
+    var title by remember {
+        mutableStateOf(list.first().title)
     }
+    var description by remember {
+        mutableStateOf( list.first().description)
+    }
+//    var maxLines by remember {
+//        mutableStateOf(true)
+//    }
+
+
+    val context = LocalContext.current
 
     Surface(modifier = Modifier.fillMaxSize()) {
         Column (modifier = Modifier.fillMaxSize()){
-            AppTopBar(title ="New Note",
+            AppTopBar(title =list.first().title,
                 iconAction = Icons.Default.Check,
+                onNavIconClick = {
+                    navController.popBackStack()
+
+                },
                 navIcon =Icons.Rounded.ArrowBack,
                 onClick = {
+                   var note=Note(title = title, description = description)
+                    onEditNote(note)
                     navController.popBackStack()
-//                    onAddNote(Note(title=title, description = description))
+//                    Toast.makeText(context, "Edit Clicked", Toast.LENGTH_SHORT).show()
                 },
                 color = Color.Yellow)
 
             Column() {
                 NoteInputText(
                     modifier = Modifier.fillMaxWidth(),
-                    text = list.first().title,
+                    text = title,
                     onTextChange = {
-                        list.first().title=it
+                        title=it
                     },
                     placeholder = "Title",
                     maxLines = 2
                 )
                 NoteInputText(
                     modifier = Modifier.fillMaxSize(),
-                    text = list.first().description,
+                    text =description,
                     onTextChange = {
-                        list.first().description=it
+                        description=it
                     },
                     placeholder="Description",
                     maxLines = Int.MAX_VALUE

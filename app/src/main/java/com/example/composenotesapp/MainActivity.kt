@@ -1,9 +1,11 @@
 package com.example.composenotesapp
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -19,6 +21,7 @@ import com.example.composenotesapp.screens.notesScreen.NotesScreen
 import com.example.composenotesapp.ui.theme.ComposeNotesAppTheme
 
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -27,6 +30,10 @@ class MainActivity : ComponentActivity() {
                val noteViewModel: NotesViewModel by viewModels()
               NotesNavigation(nList = noteViewModel.loadAllNotes(), onAddNote = {
                   noteViewModel.addNote(it)
+              }, onUpdateNote = {
+                  noteViewModel.updateNote(it)
+              }, onDelete = {
+                  noteViewModel.removeNote(it)
               })
 //                NotesScreen(nList = noteViewModel.loadAllNotes())
 //                NewNoteScreen()

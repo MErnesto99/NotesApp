@@ -2,6 +2,7 @@ package com.example.composenotesapp.model
 
 import androidx.lifecycle.ViewModel
 import com.example.composenotesapp.data.NoteDataSource
+import com.example.composenotesapp.utils.UUIDConverter
 
 
 class NotesViewModel : ViewModel(){
@@ -25,4 +26,16 @@ class NotesViewModel : ViewModel(){
     fun removeNote(note:Note){
         notesList.remove(note)
     }
+
+    fun updateNote(note: Note){
+        notesList.filter {thisNote->
+            UUIDConverter().fromUIID(thisNote.uuid)==UUIDConverter().fromUIID(note.uuid)
+        }
+
+        notesList.first().title=note.title
+        notesList.first().description=note.description
+
+
+    }
+
 }

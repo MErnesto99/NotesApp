@@ -31,6 +31,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.room.util.appendPlaceholders
 import com.example.composenotesapp.model.Note
@@ -67,6 +68,7 @@ fun NoteInputText(
 fun AppTopBar(
     title:String,
     modifier: Modifier=Modifier,
+    onNavIconClick:()->Unit,
     iconAction:ImageVector,
     navIcon:ImageVector,
     onClick: () -> Unit,
@@ -76,7 +78,11 @@ fun AppTopBar(
         colors=TopAppBarDefaults.smallTopAppBarColors(color),
         modifier = modifier,
         navigationIcon = {
-            Icon(imageVector = navIcon, contentDescription ="")
+            Icon(imageVector = navIcon,
+                contentDescription ="",
+                modifier = Modifier.clickable {
+                    onNavIconClick()
+                })
         },
         actions = {
             Icon(imageVector = iconAction,
@@ -107,13 +113,14 @@ fun CardNote(
     modifier: Modifier=Modifier,
     note: Note,
     onNoteClicked:(String)->Unit,
+    onDeleteNote: (Note)->Unit,
     maxLines:Int
     ){
     
     Card(
         modifier = modifier
             .padding(4.dp)
-            .clickable { UUIDConverter().fromUIID(note.uuid)?.let { onNoteClicked(it) } },
+            .clickable { onNoteClicked(UUIDConverter().fromUIID(note.uuid)!!)  },
         colors=CardDefaults.cardColors(Color.White),
         shape = CircleShape.copy(all= CornerSize(10.dp)),
         elevation = CardDefaults.cardElevation(6.dp),
@@ -122,15 +129,17 @@ fun CardNote(
             Text(text = note.title, modifier = Modifier
                 .padding(start = 10.dp, top = 10.dp)
                 .fillMaxWidth(),
+                overflow= TextOverflow.Ellipsis,
                 maxLines = maxLines)
 
             Text(text = note.description, modifier = Modifier
                 .padding(10.dp)
                 .fillMaxWidth(),
+                overflow= TextOverflow.Ellipsis,
                 maxLines = maxLines)
 
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-//               Text(text = ) 
+        Row(modifier = Modifier.fillMaxWidth().padding(5.dp), horizontalArrangement = Arrangement.End) {
+               Text(text ="${note.entryDate}")
         }
     }
         

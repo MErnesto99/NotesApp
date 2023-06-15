@@ -1,11 +1,14 @@
 package com.example.composenotesapp.screens.newNoteScreen
 
+import android.os.Build
 import android.view.Window
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.Create
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -15,12 +18,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.composenotesapp.components.AppTopBar
 import com.example.composenotesapp.components.NoteInputText
 import com.example.composenotesapp.model.Note
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NewNoteScreen(
     navController: NavController,
@@ -37,11 +42,16 @@ fun NewNoteScreen(
        mutableStateOf(true)
     }
 
+
+
     Surface(modifier = Modifier.fillMaxSize()) {
         Column (modifier = Modifier.fillMaxSize()){
             AppTopBar(title ="New Note",
                 iconAction = Icons.Default.Check,
-                navIcon =Icons.Rounded.Create,
+                onNavIconClick = {
+                     navController.popBackStack()
+                },
+                navIcon =Icons.Rounded.ArrowBack,
                 onClick = {
                     navController.popBackStack()
                     onAddNote(Note(title=title, description = description))
@@ -69,6 +79,8 @@ fun NewNoteScreen(
                     placeholder="Description",
                     maxLines = Int.MAX_VALUE
                 )
+
+
             }
 
 

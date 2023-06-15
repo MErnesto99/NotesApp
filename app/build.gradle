@@ -87,6 +87,15 @@ dependencies {
     //Navigation
     implementation "androidx.navigation:navigation-compose:2.5.3"
 
+
+    //Swipe to dismiss
+
+    implementation "me.saket.swipe:swipe:1.1.1"
+
+
+    //
+    implementation 'androidx.compose.foundation:foundation:1.0.3'
+
 }
 
 kapt {
