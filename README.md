@@ -22,6 +22,8 @@ ScreenShots
 <img width="300" alt="image" src="https://github.com/MErnesto99/NotesApp/assets/79359430/355d335a-04e8-483b-b01a-73e8794a1fac">
 <img width="300" alt="image" src="https://github.com/MErnesto99/NotesApp/assets/79359430/7f26fe15-0bc0-4f16-8194-baa89aa1c39e">
 <img width="300" alt="image" src="https://github.com/MErnesto99/NotesApp/assets/79359430/b718569c-9043-4bb6-982c-de5b33fe3ebd">
+<img width="300" alt="image" src="https://github.com/MErnesto99/NotesApp/assets/79359430/91249cf5-8923-44ca-b93d-0f97c03d7acf">
+
 
 
 
