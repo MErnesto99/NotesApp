@@ -11,8 +11,15 @@ So far I have 4 composable screens, which are:
 3. NewNoteScreen
 4. EditNoteScreen
 
-This is being done based on MVVM and clean arquiteture, and so I am only using lists. On my next commit I will be including Room database to the project and later on firebase firestore.
-
+Techs
+---------------
+* Kotlin
+* Jetpack Compose
+* MVVM Architecture
+* Clean Architecture
+* ViewModel
+* Hilt Dagger
+* Room
 
 ScreenShots
 
