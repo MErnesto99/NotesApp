@@ -18,7 +18,7 @@ Techs
 * MVVM Architecture
 * Clean Architecture
 * ViewModel
-* Hilt Dagger
+* Dependency Injection(Hilt Dagger)
 * Room
 
 ScreenShots
