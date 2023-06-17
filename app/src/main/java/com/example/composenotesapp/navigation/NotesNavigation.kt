@@ -2,7 +2,11 @@ package com.example.composenotesapp.navigation
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.lifecycleScope
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -19,6 +23,8 @@ import com.example.composenotesapp.screens.notesScreen.NotesScreen
 fun NotesNavigation(nList:List<Note>,onAddNote:(Note)->Unit,onUpdateNote:(Note)->Unit,onDelete:(Note)->Unit){
         val navController= rememberNavController()
 
+
+
     NavHost(navController = navController, startDestination = NotesScreens.NotesScreen.name){
 
         composable(NotesScreens.NotesScreen.name){
@@ -29,8 +35,10 @@ fun NotesNavigation(nList:List<Note>,onAddNote:(Note)->Unit,onUpdateNote:(Note)-
             NewNoteScreen(navController=navController,onAddNote)
         }
 
+
+
         composable(NotesScreens.DetailsScreen.name + "/{noteId}", arguments = listOf(navArgument(name="noteId"){
-            type= NavType.StringType
+        type= NavType.StringType
         })){
             NoteDetailsScreen(
                 navController = navController,

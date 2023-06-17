@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 import com.example.composenotesapp.components.AppTopBar
 import com.example.composenotesapp.components.NoteInputText
 import com.example.composenotesapp.model.Note
+import com.example.composenotesapp.model.NotesViewModel
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -57,6 +58,7 @@ fun NewNoteScreen(
                     onAddNote(Note(title=title, description = description))
                     title=""
                     description=""
+
                           },
                 color = Color.Yellow)
 

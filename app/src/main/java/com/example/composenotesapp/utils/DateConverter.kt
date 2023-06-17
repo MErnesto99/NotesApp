@@ -11,7 +11,7 @@ class DateConverter {
     }
 
     @TypeConverter
-    fun dateTimestamp(timestamp:Long):Date?{
+    fun dateTimeStamp(timestamp:Long):Date?{
         return Date(timestamp)
     }
 }

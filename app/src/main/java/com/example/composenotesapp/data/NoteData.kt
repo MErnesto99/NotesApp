@@ -1,9 +1,12 @@
 package com.example.composenotesapp.data
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.composenotesapp.model.Note
 
 
 class NoteDataSource(){
+    @RequiresApi(Build.VERSION_CODES.O)
     fun loadNotes():List<Note>{
 
         return listOf(

@@ -1,8 +1,6 @@
 package com.example.composenotesapp.screens.noteDetailsScreen
 
 import android.os.Build
-import android.view.Window
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.rounded.ArrowBack
-import androidx.compose.material.icons.rounded.Create
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
